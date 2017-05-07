@@ -12,19 +12,19 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $("#3").click(function() {
-            var start = $("#1").val()
-            var end = $("#2").val()
+        $("#h3").click(function() {
+            var start = $("#h1").val()
+            var end = $("#h2").val()
             if (end == "") {
                 if (stime == "") {
-                    $("form").submit()
+                    $("#f1").submit()
                 } else {
                     var s = new Date(stime[0], stime[1], stime[2])
                     if (s >= new Date().getTime()) {
                         alert("start time is future")
                         return false
                     } else {
-                        $("form").submit()
+                        $("#f1").submit()
                     }
                 }
             }
@@ -37,7 +37,36 @@
                     alert("start time is more than end time")
                     return false
                 } else {
-                    $("form").submit()
+                    $("f1").submit()
+                }
+            }
+        })
+        $("#b3").click(function() {
+            var start = $("#b1").val()
+            var end = $("#b2").val()
+            if (end == "") {
+                if (stime == "") {
+                    $("#f2").submit()
+                } else {
+                    var s = new Date(stime[0], stime[1], stime[2])
+                    if (s >= new Date().getTime()) {
+                        alert("start time is future")
+                        return false
+                    } else {
+                        $("#f2").submit()
+                    }
+                }
+            }
+            if (start != "") {
+                var stime = start.split("-")
+                var etime = end.split("-")
+                var s = new Date(stime[0], stime[1], stime[2])
+                var e = new Date(etime[0], etime[1], etime[2])
+                if (s.getTime() > e.getTime()) {
+                    alert("start time is more than end time")
+                    return false
+                } else {
+                    $("f2").submit()
                 }
             }
         })
@@ -53,10 +82,10 @@
         text-align: center;
     }
     
-    #in1{
-        width: 20%;
-        height: 5%;
-    }
+    /*#in1{*/
+        /*width: 20%;*/
+        /*height: 5%;*/
+    /*}*/
 
     table {
         text-align: center;
@@ -75,18 +104,33 @@
         <div>
             <h1>Vhost/Virtio Performance Daily Trace System</h1>
         </div>
-        <div>
-            <p>check today performance compare with before </p> 
-            <form action="./table">
-                <input id="in1" type="submit" value="compare with  based release">
-            </form>
-        </div>
-        <p>please select StartDate and EndDate</p>
-        <form action="./hchart">
+        <%--<div>--%>
+            <%--<p>check today performance compare with before </p> --%>
+            <%--<form action="./table">--%>
+                <%--<input id="in1" type="submit" value="compare with  based release">--%>
+            <%--</form>--%>
+        <%--</div>--%>
+        <p>Master performance:please select StartDate and EndDate</p>
+        <form action="./master" id="f1">
             Start Date:
-            <input type="date" name="startDate" id="1" /> End Date:
-            <input type="date" name="endDate" id="2" />
-            <input type="submit" value="select time" id="3">
+            <input type="date" name="startDate" id="h1" /> End Date:
+            <input type="date" name="endDate" id="h2" />
+            <select name="sel1">
+                <option value="Mpvp">PVP perf</option>
+                <option value="Mloopback">Loopback perf</option>
+            </select>
+            <input type="submit" value="select" id="h3">
+        </form>
+        <p>Brance performance:please select StartDate and EndDate</p>
+        <form action="./branch" id="f2">
+            Start Date:
+            <input type="date" name="startDate" id="b1" /> End Date:
+            <input type="date" name="endDate" id="b2" />
+            <select name="sel2">
+                <option value="Bpvp">PVP perf</option>
+                <option value="Bloopback">Loopback perf</option>
+            </select>
+            <input type="submit" value="select" id="b3">
         </form>
     </div>
     <div>

@@ -5,8 +5,8 @@ import javax.persistence.*;
  * Created by mengleil on 4/6/2017.
  */
 @Entity
-@Table(name = "app_thrputdb", schema = "javadb", catalog = "")
-public class AppThrputdb {
+@Table(name = "app_branchthrputdb", schema = "javadb", catalog = "")
+public class AppBranchThrputdb {
     private int id;
     private Double mer64;
     private Double mer128;

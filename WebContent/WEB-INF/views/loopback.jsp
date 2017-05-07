@@ -31,20 +31,20 @@
 </head>
 
 <body>
-    <form action="./option" >
-        <input type="submit" value="back">
-        date:<input type="date" name="commit" id="4">
-        <button type="button" id="5">commit</button>
-    </form>
-    <div id="6"></div>
-    <div id="container0" style="min-height: 300px;height: 300px"></div>
-    <div id="container1" style="min-height: 300px;height: 300px"></div>
-    <div id="container2" style="min-height: 300px;height: 300px"></div>
-    <script>
+<form action="./option">
+    <input type="submit" value="back">
+    date:<input type="date" name="commit" id="4">
+    <button type="button" id="5">commit</button>
+</form>
+<div id="6"></div>
+<div id="container0" style="min-height: 300px;height: 300px"></div>
+<div id="container1" style="min-height: 300px;height: 300px"></div>
+<div id="container2" style="min-height: 300px;height: 300px"></div>
+<script>
     $(function() {
         $('#container0').highcharts({
             title: {
-                text: 'PVP Mergeable Throuphput',
+                text: 'Loopback Mergeable Throuphput',
                 x: -20 //center
             },
 //            subtitle: {
@@ -89,7 +89,7 @@
         });
         $('#container1').highcharts({
             title: {
-                text: 'PVP No-mergeable Throuphput',
+                text: 'Loopback No-mergeable Throuphput',
                 x: -20 //center
             },
 //            subtitle: {
@@ -134,7 +134,7 @@
         });
         $('#container2').highcharts({
             title: {
-                text: 'PVP Vector Throuphput',
+                text: 'Loopback Vector Throuphput',
                 x: -20 //center
             },
 //            subtitle: {
@@ -178,7 +178,7 @@
             }]
         });
     });
-    </script>
+</script>
 </body>
 
 </html>

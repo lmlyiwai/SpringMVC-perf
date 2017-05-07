@@ -1,14 +1,14 @@
 package com.jxust.svsh.entity;
 
-import javax.persistence.*;
-import java.sql.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 /**
- * Created by mengleil on 4/6/2017.
+ * Created by mengleil on 5/6/2017.
  */
 @Entity
-@Table(name = "app_gitdb", schema = "javadb", catalog = "")
-public class AppGitdb {
+@Table(name = "app_branchgitdb", schema = "javadb", catalog = "")
+public class AppBranchGitdb {
     private String commit;
     private String author;
     private String comdate;
@@ -18,7 +18,7 @@ public class AppGitdb {
 
     @Id
     @Column(name = "commit", nullable = false, length = 255)
-    @GeneratedValue
+//    @GeneratedValue
     public String getCommit() {
         return commit;
     }
@@ -91,7 +91,7 @@ public class AppGitdb {
 //
 //        return true;
 //    }
-//
+
 //    @Override
 //    public int hashCode() {
 //        int result = commit != null ? commit.hashCode() : 0;

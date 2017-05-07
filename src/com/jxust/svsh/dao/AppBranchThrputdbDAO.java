@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by mengleil on 4/6/2017.
+ * Created by mengleil on 5/6/2017.
  */
 @Repository
-public class AppThrputdbDAO {
+public class AppBranchThrputdbDAO {
     @Resource
     private SessionFactory sessionFactory;
 
@@ -26,7 +26,7 @@ public class AppThrputdbDAO {
     }
     public List<String> getCommitByDate(String date){
         List<String> rst ;
-        String sql = "SELECT commit_id FROM app_thrputdb WHERE mydate='" + date + "'";
+        String sql = "SELECT commit_id FROM app_branchthrputdb WHERE mydate='" + date + "'";
         try{
             rst = jdbcTemplate.queryForList(sql,String.class);
             return  rst;
@@ -35,11 +35,10 @@ public class AppThrputdbDAO {
             return null;
         }
     }
-    public List<Map<String, Object>> getResultByDate(String start,String end) {
+    public List<Map<String, Object>> getResultByDate(String startDate,String endDate) {
         List<Map<String, Object>> res;
-        String sql = "SELECT  * FROM app_thrputdb WHERE  mydate in (SELECT  mydate  FROM  app_gitdb WHERE mydate>='" + start + "' AND  mydate<='" + end + "' ORDER BY mydate ) ";
+        String sql = "SELECT * FROM app_branchgitdb WHERE mydate>='" + startDate + "' AND  mydate<='" + endDate + "' ORDER BY mydate  ";
         try {
-            System.out.println("------------------" + sql);
             res = jdbcTemplate.queryForList(sql);
             return  res;
         } catch (Exception e) {

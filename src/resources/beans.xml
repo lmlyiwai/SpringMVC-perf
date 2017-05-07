@@ -42,7 +42,7 @@
 			    * validate : 只会和数据库中的表进行比较,不会创建新表,但是会插入新值 
                  -->
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/lmldb</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://10.239.128.125:3306/javadb</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>

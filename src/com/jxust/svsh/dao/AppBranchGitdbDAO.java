@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by mengleil on 4/6/2017.
+ * Created by mengleil on 56/2017.
  */
 @Repository
-public class AppGitdbDAO {
+public class AppBranchGitdbDAO {
     @Resource
     private SessionFactory sessionFactory;
     @Autowired
@@ -28,7 +28,7 @@ public class AppGitdbDAO {
         if(list.size() == 0){
             return map;
         }else{
-            String sql = "SELECT * FROM app_gitdb WHERE commit='" + list.get(0) + "'";
+            String sql = "SELECT * FROM app_branchgitdb WHERE commit='" + list.get(0) + "'";
             try {
                 map = jdbcTemplate.queryForMap(sql);
                 return map;
@@ -36,17 +36,6 @@ public class AppGitdbDAO {
                 e.printStackTrace();
                 return map;
             }
-        }
-    }
-    public Map<String,Object> getInfoByDate(String date){
-        Map<String,Object> map = new HashMap<String, Object>();
-        String sql = "SELECT * FROM app_gitdb WHERE mydate='" + date + "'";
-        try {
-            map = jdbcTemplate.queryForMap(sql);
-            return map;
-        }catch (Exception e){
-            e.printStackTrace();
-            return map;
         }
     }
 }

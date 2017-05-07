@@ -1,7 +1,8 @@
 package com.jxust.svsh.service;
 
-import com.jxust.svsh.dao.AppGitdbDAO;
-import com.jxust.svsh.dao.AppThrputdbDAO;
+import com.jxust.svsh.dao.*;
+import com.jxust.svsh.entity.AppBranchGitdb;
+import com.jxust.svsh.entity.AppLpThrputdb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,24 @@ public class HChartService {
     public AppGitdbDAO appGitdbDAO;
     @Autowired
     public AppThrputdbDAO appThrputdbDAO;
-    public  Map<String,Object> getGitInfo(String date){
-        List<String> list = appThrputdbDAO.getCommitByDate(date);
-        return  appGitdbDAO.getGitByCommit(list);
+    @Autowired
+    public AppLpThrputdbDAO appLpThrputdbDAO;
+    @Autowired
+    public AppBranchGitdbDAO appBranchGitdbDAO;
+    @Autowired
+    public AppBranchThrputdbDAO appBranchThrputdbDAO;
+    @Autowired
+    public AppBranchLpThrputdbDAO appBranchLpThrputdbDAO;
+    public  Map<String,Object> getMasterGitInfo(String date){
+        Map<String,Object>  rst = appGitdbDAO.getInfoByDate(date);
+        return  rst;
     }
-    public List<Map<String, Object>> getResult(String startDate,String endDate) {
+    public List<Map<String, Object>> getMasterResult(String startDate,String endDate) {
         List<Map<String, Object>> res = appThrputdbDAO.getResultByDate(startDate,endDate);
+        return res;
+    }
+    public  List<Map<String,Object>> getMasterLoopbackResult(String startDate,String endDate){
+        List<Map<String, Object>> res = appLpThrputdbDAO.getResultByDate(startDate,endDate);
         return res;
     }
 }
