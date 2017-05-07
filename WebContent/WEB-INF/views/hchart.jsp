@@ -13,7 +13,10 @@
                 $.ajax({
                     type: 'POST',
                     url: "./MasterCommit",
-                    data: date,
+                    data: {
+                        date:date,
+                        pathname:window.location.pathname
+                    },
                     success: function (data) {
                         console.log("data :" + data)
                         $("#6").html(data)

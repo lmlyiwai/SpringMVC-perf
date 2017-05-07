@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by mengleil on 5/6/2017.
+ * Created by mengleil on 4/6/2017.
  */
 @Repository
 public class AppBranchThrputdbDAO {
@@ -26,7 +26,7 @@ public class AppBranchThrputdbDAO {
     }
     public List<String> getCommitByDate(String date){
         List<String> rst ;
-        String sql = "SELECT commit_id FROM app_branchthrputdb WHERE mydate='" + date + "'";
+        String sql = "SELECT commit_id FROM app_thrputdb WHERE mydate='" + date + "'";
         try{
             rst = jdbcTemplate.queryForList(sql,String.class);
             return  rst;
@@ -35,10 +35,14 @@ public class AppBranchThrputdbDAO {
             return null;
         }
     }
-    public List<Map<String, Object>> getResultByDate(String startDate,String endDate) {
+//    根据时间段得到时间段内的commit对应的当天的提交
+//    @parm start 开始时间
+//    @parm end   结束时间
+    public List<Map<String, Object>> getResultByDate(String start,String end) {
         List<Map<String, Object>> res;
-        String sql = "SELECT * FROM app_branchgitdb WHERE mydate>='" + startDate + "' AND  mydate<='" + endDate + "' ORDER BY mydate  ";
+        String sql = "SELECT  * FROM app_branchthrputdb WHERE  mydate in (SELECT  mydate  FROM  app_branchgitdb WHERE mydate>='" + start + "' AND  mydate<='" + end + "' ORDER BY mydate ) ";
         try {
+            System.out.println("------------------" + sql);
             res = jdbcTemplate.queryForList(sql);
             return  res;
         } catch (Exception e) {
@@ -46,5 +50,4 @@ public class AppBranchThrputdbDAO {
             return null;
         }
     }
-
 }
